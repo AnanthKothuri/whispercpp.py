@@ -57,8 +57,10 @@ cdef cnp.ndarray[cnp.float32_t, ndim=1, mode="c"] load_audio(bytes file, int sr 
                 capture_stderr=True
             )
         )[0]
-    except:
-        raise RuntimeError(f"File '{file}' not found")
+    except ffmpeg.Error as e:
+        print('stdout:', e.stdout.decode('utf8'))
+        print('stderr:', e.stderr.decode('utf8'))
+        raise e
 
     cdef cnp.ndarray[cnp.float32_t, ndim=1, mode="c"] frames = (
         np.frombuffer(out, np.int16)
