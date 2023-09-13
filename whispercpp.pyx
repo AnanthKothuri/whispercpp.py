@@ -30,7 +30,7 @@ MODELS = {
 def model_exists(model):
     print('Get current working directory : ', os.getcwd())
     print(os.path.abspath(os.getcwd()))
-    print(os.listdir(os.getcwd())
+    print(os.listdir(os.getcwd()))
     print(os.listdir('/ml/model'))
     return os.path.exists(Path(MODELS_DIR).joinpath(model))
 
