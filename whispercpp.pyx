@@ -7,8 +7,8 @@ import requests
 import os
 from pathlib import Path
 
-MODELS_DIR = str(Path('/opt/ml/model').expanduser())
-print("Saving models to:", MODELS_DIR)
+MODELS_DIR = str(Path('~/opt/ml/model').expanduser())
+#print("Saving models to:", MODELS_DIR)
 
 
 cimport numpy as cnp
@@ -28,6 +28,7 @@ MODELS = {
 }
 
 def model_exists(model):
+    print(os.listdir('~/opt/ml/model'))
     return os.path.exists(Path(MODELS_DIR).joinpath(model))
 
 def download_model(model):
