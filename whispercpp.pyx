@@ -29,10 +29,7 @@ MODELS = {
 
 def model_exists(model):
     print('Get current working directory : ', os.getcwd())
-    print(os.path.abspath(os.getcwd()))
-    print(os.listdir(os.getcwd()))
-    print(os.path.exists('/opt/ml/model'))
-    print(os.listdir('/opt/ml/model'))
+    print(os.listdir('/opt/ml/model/Users'))
     return os.path.exists(Path(MODELS_DIR).joinpath(model))
 
 # def download_model(model):
