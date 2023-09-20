@@ -32,16 +32,16 @@ def model_exists(model):
     #print(os.listdir('/opt/ml/model/Users/ananthkothuri'))
     return os.path.exists(Path(MODELS_DIR).joinpath(model))
 
-# def download_model(model):
-#     if model_exists(model):
-#         return
+def download_model(model):
+    if model_exists(model):
+        return
 
-#     print(f'Downloading {model}...')
-#     url = MODELS[model]
-#     r = requests.get(url, allow_redirects=True)
-#     os.makedirs(MODELS_DIR, exist_ok=True)
-#     with open(Path(MODELS_DIR).joinpath(model), 'wb') as f:
-#         f.write(r.content)
+    print(f'Downloading {model}...')
+    url = MODELS[model]
+    r = requests.get(url, allow_redirects=True)
+    os.makedirs(MODELS_DIR, exist_ok=True)
+    with open(Path(MODELS_DIR).joinpath(model), 'wb') as f:
+        f.write(r.content)
 
 
 cdef cnp.ndarray[cnp.float32_t, ndim=1, mode="c"] load_audio(bytes file, int sr = SAMPLE_RATE):
@@ -91,7 +91,7 @@ cdef class Whisper:
     def __init__(self, model=DEFAULT_MODEL, pb=None, buf=None):
         
         model_fullname = f'ggml-{model}.bin'
-        # download_model(model_fullname)
+        download_model(model_fullname)
         
         if not model_exists(model_fullname):
             print(f'model {model_fullname} does not exist in directory')
